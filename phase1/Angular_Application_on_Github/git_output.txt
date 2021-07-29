@@ -15,7 +15,7 @@ $ echo "# 2058590_josue_mean_stack" >> README.md
 
 LM@DESKTOP MINGW64 /c/GitProject/2058590_Josue_MEAN_Stack (master)
 $ git init
-Reinitialized existing Git repository in /c//Dota/Simplilearn/GitProject/2058590_Josue_MEAN_Stack/.git/
+Reinitialized existing Git repository in /c/Simplilearn/GitProject/2058590_Josue_MEAN_Stack/.git/
 
 LM@DESKTOP MINGW64 /c/GitProject/2058590_Josue_MEAN_Stack (master)
 $ git add README.md
@@ -38,7 +38,7 @@ LM@DESKTOP MINGW64 /c/GitProject/2058590_Josue_MEAN_Stack (master)
 $ git branch -M master
 
 LM@DESKTOP MINGW64 /c/GitProject/2058590_Josue_MEAN_Stack (master)
-$ git remote add origin https://github.com/2058590/2058590_josue_mean_st
+$ git remote add origin https://github.com/2058590/2058590_josue_mean_stack
 
 LM@DESKTOP MINGW64 /c/GitProject/2058590_Josue_MEAN_Stack (master)
 $ git push -u origin master
@@ -56,86 +56,40 @@ Branch 'master' set up to track remote branch 'master' from 'origin'.
 LM@DESKTOP MINGW64 /c/GitProject/2058590_Josue_MEAN_Stack (master)
 $
 
-LM@DESKTOP MINGW64 /d/CloudStation/CloudStation/Documents/Tata/S
-$
-
-LM@DESKTOP MINGW64 /d/CloudStation/CloudStation/Documents/Tata/S
-$
-
-LM@DESKTOP MINGW64 /d/CloudStation/CloudStation/Documents/Tata/S
-$
-
-LM@DESKTOP MINGW64 /d/CloudStation/CloudStation/Documents/Tata/S
-$
-
-LM@DESKTOP MINGW64 /d/CloudStation/CloudStation/Documents/Tata/S
-$
-
-LM@DESKTOP MINGW64 /d/CloudStation/CloudStation/Documents/Tata/S
-$
-
-LM@DESKTOP MINGW64 /d/CloudStation/CloudStation/Documents/Tata/S
-$
-
-LM@DESKTOP MINGW64 /d/CloudStation/CloudStation/Documents/Tata/S
-$
-
-LM@DESKTOP MINGW64 /d/CloudStation/CloudStation/Documents/Tata/S
-$
-
-LM@DESKTOP MINGW64 /d/CloudStation/CloudStation/Documents/Tata/S
-$
-
-LM@DESKTOP MINGW64 /d/CloudStation/CloudStation/Documents/Tata/S
-$
-
-LM@DESKTOP MINGW64 /d/CloudStation/CloudStation/Documents/Tata/S
-$
-
-LM@DESKTOP MINGW64 /d/CloudStation/CloudStation/Documents/Tata/S
-$
-
-LM@DESKTOP MINGW64 /d/CloudStation/CloudStation/Documents/Tata/S
-$ ls
-README.md
-
-LM@DESKTOP MINGW64 /d/CloudStation/CloudStation/Documents/Tata/S
-$ mkdir phase1
-
-LM@DESKTOP MINGW64 /d/CloudStation/CloudStation/Documents/Tata/Simplilearn/GitProject/2058590_Josue_MEAN_Stack (master)
+LM@DESKTOP MINGW64 /c/GitProject/2058590_Josue_MEAN_Stack (master)
 $ mkdir phase2 phase3 phase4
 
-LM@DESKTOP MINGW64 /d/CloudStation/CloudStation/Documents/Tata/Simplilearn/GitProject/2058590_Josue_MEAN_Stack (master)
+LM@DESKTOP MINGW64 /c/GitProject/2058590_Josue_MEAN_Stack (master)
 $ ls
 phase1/  phase2/  phase3/  phase4/  README.md
 
-LM@DESKTOP MINGW64 /d/CloudStation/CloudStation/Documents/Tata/Simplilearn/GitProject/2058590_Josue_MEAN_Stack (master)
+LM@DESKTOP MINGW64 /c/GitProject/2058590_Josue_MEAN_Stack (master)
 $ mkdir Angular_Application_on_Github
 
-LM@DESKTOP MINGW64 /d/CloudStation/CloudStation/Documents/Tata/Simplilearn/GitProject/2058590_Josue_MEAN_Stack (master)
+LM@DESKTOP MINGW64 /c/GitProject/2058590_Josue_MEAN_Stack (master)
 $ mv Angular_Application_on_Github/ phase1
 
-LM@DESKTOP MINGW64 /d/CloudStation/CloudStation/Documents/Tata/Simplilearn/GitProject/2058590_Josue_MEAN_Stack (master)
+LM@DESKTOP MINGW64 /c/GitProject/2058590_Josue_MEAN_Stack (master)
 $ ls
 phase1/  phase2/  phase3/  phase4/  README.md
 
-LM@DESKTOP MINGW64 /d/CloudStation/CloudStation/Documents/Tata/Simplilearn/GitProject/2058590_Josue_MEAN_Stack (master)
+LM@DESKTOP MINGW64 /c/GitProject/2058590_Josue_MEAN_Stack (master)
 $ cd phase1/Angular_Application_on_Github/
 
-LM@DESKTOP MINGW64 /d/CloudStation/CloudStation/Documents/Tata/Simplilearn/GitProject/2058590_Josue_MEAN_Stack/phase1/Angular_Application_on_Github (master)
+LM@DESKTOP MINGW64 /c/GitProject/2058590_Josue_MEAN_Stack/phase1/Angular_Application_on_Github (master)
 $ echo "some dum' text in a file" >> dummy.txt
 
-LM@DESKTOP MINGW64 /d/CloudStation/CloudStation/Documents/Tata/Simplilearn/GitProject/2058590_Josue_MEAN_Stack/phase1/Angular_Application_on_Github (master)
+LM@DESKTOP MINGW64 /c/GitProject/2058590_Josue_MEAN_Stack/phase1/Angular_Application_on_Github (master)
 $ ls
 dummy.txt
 
-LM@DESKTOP MINGW64 /d/CloudStation/CloudStation/Documents/Tata/Simplilearn/GitProject/2058590_Josue_MEAN_Stack/phase1/Angular_Application_on_Github (master)
+LM@DESKTOP MINGW64 /c/GitProject/2058590_Josue_MEAN_Stack/phase1/Angular_Application_on_Github (master)
 $ cd ..
 
-LM@DESKTOP MINGW64 /d/CloudStation/CloudStation/Documents/Tata/Simplilearn/GitProject/2058590_Josue_MEAN_Stack/phase1 (master)
+LM@DESKTOP MINGW64 /c/GitProject/2058590_Josue_MEAN_Stack/phase1 (master)
 $ cd ..
 
-LM@DESKTOP MINGW64 /d/CloudStation/CloudStation/Documents/Tata/Simplilearn/GitProject/2058590_Josue_MEAN_Stack (master)
+LM@DESKTOP MINGW64 /c/GitProject/2058590_Josue_MEAN_Stack (master)
 $ git status
 On branch master
 Your branch is up to date with 'origin/master'.
@@ -146,12 +100,12 @@ Untracked files:
 
 nothing added to commit but untracked files present (use "git add" to track)
 
-LM@DESKTOP MINGW64 /d/CloudStation/CloudStation/Documents/Tata/Simplilearn/GitProject/2058590_Josue_MEAN_Stack (master)
+LM@DESKTOP MINGW64 /c/GitProject/2058590_Josue_MEAN_Stack (master)
 $ git add *
 warning: LF will be replaced by CRLF in phase1/Angular_Application_on_Github/dummy.txt.
 The file will have its original line endings in your working directory
 
-LM@DESKTOP MINGW64 /d/CloudStation/CloudStation/Documents/Tata/Simplilearn/GitProject/2058590_Josue_MEAN_Stack (master)
+LM@DESKTOP MINGW64 /c/GitProject/2058590_Josue_MEAN_Stack (master)
 $ git status
 On branch master
 Your branch is up to date with 'origin/master'.
@@ -161,13 +115,13 @@ Changes to be committed:
         new file:   phase1/Angular_Application_on_Github/dummy.txt
 
 
-LM@DESKTOP MINGW64 /d/CloudStation/CloudStation/Documents/Tata/Simplilearn/GitProject/2058590_Josue_MEAN_Stack (master)
+LM@DESKTOP MINGW64 /c/GitProject/2058590_Josue_MEAN_Stack (master)
 $ git commit -m "added phase dirs and dummy file"
 [master bb9895b] added phase dirs and dummy file
  1 file changed, 1 insertion(+)
  create mode 100644 phase1/Angular_Application_on_Github/dummy.txt
 
-LM@DESKTOP MINGW64 /d/CloudStation/CloudStation/Documents/Tata/Simplilearn/GitProject/2058590_Josue_MEAN_Stack (master)
+LM@DESKTOP MINGW64 /c/GitProject/2058590_Josue_MEAN_Stack (master)
 $ git push
 Logon failed, use ctrl+c to cancel basic credential prompt.
 mlEnumerating objects: 6, done.
@@ -181,28 +135,28 @@ remote:   https://github.com/2058590/2058590_Josue_MEAN_Stack.git
 To https://github.com/2058590/2058590_josue_mean_stack.git
    0a94e10..bb9895b  master -> master
 
-LM@DESKTOP MINGW64 /d/CloudStation/CloudStation/Documents/Tata/Simplilearn/GitProject/2058590_Josue_MEAN_Stack (master)
+LM@DESKTOP MINGW64 /c/GitProject/2058590_Josue_MEAN_Stack (master)
 $ cd phase1/Angular_Application_on_Github/
 
-LM@DESKTOP MINGW64 /d/CloudStation/CloudStation/Documents/Tata/Simplilearn/GitProject/2058590_Josue_MEAN_Stack/phase1/Angular_Application_on_Github (master)
+LM@DESKTOP MINGW64 /c/GitProject/2058590_Josue_MEAN_Stack/phase1/Angular_Application_on_Github (master)
 $ echo "some text for reading" >> readme.txt
 
-LM@DESKTOP MINGW64 /d/CloudStation/CloudStation/Documents/Tata/Simplilearn/GitProject/2058590_Josue_MEAN_Stack/phase1/Angular_Application_on_Github (master)
+LM@DESKTOP MINGW64 /c/GitProject/2058590_Josue_MEAN_Stack/phase1/Angular_Application_on_Github (master)
 $ cd ..
 
-LM@DESKTOP MINGW64 /d/CloudStation/CloudStation/Documents/Tata/Simplilearn/GitProject/2058590_Josue_MEAN_Stack/phase1 (master)
+LM@DESKTOP MINGW64 /c/GitProject/2058590_Josue_MEAN_Stack/phase1 (master)
 $ cd ..
 
-LM@DESKTOP MINGW64 /d/CloudStation/CloudStation/Documents/Tata/Simplilearn/GitProject/2058590_Josue_MEAN_Stack (master)
+LM@DESKTOP MINGW64 /c/GitProject/2058590_Josue_MEAN_Stack (master)
 $ ls
 phase1/  phase2/  phase3/  phase4/  README.md
 
-LM@DESKTOP MINGW64 /d/CloudStation/CloudStation/Documents/Tata/Simplilearn/GitProject/2058590_Josue_MEAN_Stack (master)
+LM@DESKTOP MINGW64 /c/GitProject/2058590_Josue_MEAN_Stack (master)
 $ git add *
 warning: LF will be replaced by CRLF in phase1/Angular_Application_on_Github/readme.txt.
 The file will have its original line endings in your working directory
 
-LM@DESKTOP MINGW64 /d/CloudStation/CloudStation/Documents/Tata/Simplilearn/GitProject/2058590_Josue_MEAN_Stack (master)
+LM@DESKTOP MINGW64 /c/GitProject/2058590_Josue_MEAN_Stack (master)
 $ git status
 On branch master
 Your branch is up to date with 'origin/master'.
@@ -212,13 +166,13 @@ Changes to be committed:
         new file:   phase1/Angular_Application_on_Github/readme.txt
 
 
-LM@DESKTOP MINGW64 /d/CloudStation/CloudStation/Documents/Tata/Simplilearn/GitProject/2058590_Josue_MEAN_Stack (master)
+LM@DESKTOP MINGW64 /c/GitProject/2058590_Josue_MEAN_Stack (master)
 $ git commit -m "added readme.txt"
 [master b55d7fc] added readme.txt
  1 file changed, 1 insertion(+)
  create mode 100644 phase1/Angular_Application_on_Github/readme.txt
 
-LM@DESKTOP MINGW64 /d/CloudStation/CloudStation/Documents/Tata/Simplilearn/GitProject/2058590_Josue_MEAN_Stack (master)
+LM@DESKTOP MINGW64 /c/GitProject/2058590_Josue_MEAN_Stack (master)
 $ git push
 Logon failed, use ctrl+c to cancel basic credential prompt.
 2Enumerating objects: 8, done.
@@ -232,5 +186,5 @@ remote:   https://github.com/2058590/2058590_Josue_MEAN_Stack.git
 To https://github.com/2058590/2058590_josue_mean_stack.git
    bb9895b..b55d7fc  master -> master
 
-LM@DESKTOP MINGW64 /d/CloudStation/CloudStation/Documents/Tata/Simplilearn/GitProject/2058590_Josue_MEAN_Stack (master)
+LM@DESKTOP MINGW64 /c/GitProject/2058590_Josue_MEAN_Stack (master)
 $ 2
