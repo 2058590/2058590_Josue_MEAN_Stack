@@ -1,0 +1,83 @@
+body div.header{
+    color: blue;
+    font-size: 40px;
+    border-width: 2px;
+    border-style: solid;
+}
+
+body div.main{
+    color: 
+}
+
+h1{
+    color: maroon;
+}
+
+h2{
+    color: black;
+}
+
+h3{
+    color: green;
+}
+
+h4{
+    color: yellow;
+}
+
+h5{
+    color: gray;
+}
+
+body div.footer{
+    border-color: blueviolet;
+    border-style: dashed;
+    border-width: 3px;
+}
+
+body div.main{
+    border-color:black;
+    border-width: 2px;
+    border-style: dashed;
+    font-size: 30px;
+}
+
+p{
+    color: cadetblue;
+}
+
+p {
+  border-style: solid;
+  border-width: 5px;
+}
+
+p1 {
+  border-style: solid;
+  border-width: medium;
+}
+
+p2 {
+  border-style: dotted;
+  border-width: 2px;
+}
+
+p3
+{
+  border-style: dotted;
+  border-width: thick;
+}
+
+p4
+{
+  border-style: dashed;
+  border-width: thick;
+  color: lime;
+}
+
+
+p5
+{
+  border-style: dashed;
+  border-width: medium;
+  color: pink;
+}
