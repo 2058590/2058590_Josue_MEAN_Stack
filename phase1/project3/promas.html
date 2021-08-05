@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles.css">
+        <title>Program Managers</title>
+        <script src="data.js"></script>
+    </head>
+    <body>
+        <table class="container">
+            <tr>
+                <td><h5><a href="index.html">Main Page </a></h5></td>
+                <td><pre> | </pre></td>
+                <td><h5><a href="fintms.html">Finance Teams</a></h5></td>
+            </tr>
+        </table>
+        <div class="center">
+            <h1>Add New Budget</h1>
+            <form>
+                <table><tr><td><div class="label"><pre>Client Name  : </pre></div></td><td><div class="input"><input type="text" id="client"></div></td></tr>
+                <table><tr><td><div class="label"><pre>Project Name : </pre></div></td><td><div class="input"><input type="text" id="project"></div></td></tr>
+                <table><tr><td><div class="label"><pre>Budget       : </pre></div></td><td><div class="input"><input type="number" id="budget"></div></td></tr></table>    
+                <table><tr><td><div class="button" onclick="addData()"><h1>Add</h1></div></td>
+                <td><div class="button" onclick="clearData()"><h1>Clear</h1></div></td></tr></table>
+                <div class="button" onclick="back()"><h1>Back</h1></div>
+            </form>
+        </div>
+    </body>
+</html>
