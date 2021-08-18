@@ -1,0 +1,4 @@
+<h1>My Portfolio</h1>
+<app-port-component *ngIf="isVerified() == true && signup() == false"></app-port-component>
+<app-login-component *ngIf="isVerified() == false && signup() == false"></app-login-component>
+<app-signup-component *ngIf="signup() == true"></app-signup-component>

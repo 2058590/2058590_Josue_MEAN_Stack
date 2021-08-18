@@ -1,0 +1,15 @@
+<p>username = {{username.value}}</p>
+<p>password = {{password.value}}</p>
+<br/>
+
+<form>
+    <label for="username">Username </label>
+    <input type="text" name="username" placeholder="Username" #username>
+    <br/>
+    <label for="password">Password </label>
+    <input type="password" name="password" placeholder="Password" #password>
+    <br/>
+    <button type="button" (click)="verify(username.value, password.value)">Submit</button>
+    <pre></pre>
+    <a href="#" (click)="goSignup()">Sign Up</a>
+</form>

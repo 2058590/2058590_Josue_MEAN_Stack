@@ -1,0 +1,30 @@
+<p>firstname = {{firstname.value}}</p>
+<p>lastname = {{lastname.value}}</p>
+<p>username = {{username.value}}</p>
+<p>password = {{password.value}}</p>
+<br/>
+  
+<a href="#" (click)="loginPage()">Home</a>
+<br/>
+
+<form>
+    <label for="firstname">First Name </label>
+    <input id="firstname" type="text" name="firstname" placeholder="First Name" #firstname required>
+    <div id="out1" hidden>Error message</div>
+    <br/>
+    <label for="lastname">Last Name </label>
+    <input id="lastname" type="text" name="lastname" placeholder="Last Name" #lastname required>
+    <div id="out2" hidden></div>
+    <br/>
+    <label for="username">Username </label>
+    <input id="username" type="text" name="username" placeholder="Username" #username required>
+    <div id="out3" hidden></div>
+    <br/>
+    <label for="password">Password </label>
+    <input id="password" type="password" name="password" placeholder="Password" #password required>
+    <div id="out4" hidden></div>
+    <br/>
+    <button type="button" (click)="register(firstname.value, lastname.value, username.value, password.value)">Register</button>
+    
+    <button type="button" (click)="reset()">Reset</button>
+</form>
