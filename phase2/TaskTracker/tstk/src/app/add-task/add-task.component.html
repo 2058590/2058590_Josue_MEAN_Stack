@@ -1,0 +1,45 @@
+
+<form #ngform>
+    <table>
+        <tr>
+            <td>
+            <label for="taskid">ID: </label>
+        </td>
+        <td>
+            <input type="number" id="taskid" placeholder="1234" #taskid>
+        </td>
+        </tr>
+        <tr>
+            <td>
+            <label for="owner">Owner:  </label>
+        </td>
+        <td>
+            <input type="text"  id="owner" placeholder="Owner Name" #owner>
+        </td>
+        </tr>
+        <tr>
+            <td>
+            <label for="taskinfo">Task:  </label>
+        </td>
+        <td>
+            <textarea type="text" id="taskinfo" placeholder="Task Details" #taskinfo></textarea>
+        </td>
+        </tr>
+        <tr>
+            <td>
+            <label for="deadline">Deadline:  </label>
+        </td>
+        <td>
+            <input type="date" id="deadline" #deadline>
+        </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="#"  (click)="addTask(ngform)">Submit</a>
+            </td>
+            <td>
+                <a href="#" (click)="reset(ngform)">Reset</a>
+            </td>
+        </tr>
+    </table>
+</form>
