@@ -1,0 +1,77 @@
+.center {
+    margin: 0% 25% 0% 25%;
+    width: 50%;
+    border: 3px solid black;
+    padding: 10px;
+}
+
+body 
+{
+    font-family: 'Courier New', Courier, monospace;
+}
+
+
+table{
+    width: 100%;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+th h2 {
+    height: 15px;
+    align-content: center;
+}
+
+td {
+    font-size: 20px;
+    padding: 4px 4px 4px 4px;
+}
+
+th {
+    background-color: #28b0ff;
+    color: white;
+}
+
+tr:nth-child(even) 
+{
+    background-color: hsl(0, 0%, 95%);
+}
+
+.label {
+    color:red;
+}
+
+.input{
+    border-color:red;
+}
+
+.button {
+    color:blue;
+}
+
+.button:hover {
+    color:aqua;
+}
+
+.highlight:hover
+{
+    background-color: limegreen;
+    color: white;
+}
+
+.highlight
+{
+    background-color: green;
+    color: white;
+}
+
+.wrong:hover
+{
+    background-color: black;
+    color: white;
+}
+
+.wrong
+{
+    background-color: red;
+    color: white;
+}

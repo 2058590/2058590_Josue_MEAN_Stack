@@ -1,0 +1,12 @@
+{
+    "Question 1": {"question":"5 + 5", "answer":"c", "a":5, "b":11, "c":10, "d":8},
+    "Question 2": {"question":"7 - 2", "answer":"a", "a":5, "b":2, "c":4, "d":3},
+    "Question 3": {"question":"2 * 3", "answer":"d", "a":5, "b":-5, "c":7, "d":6},
+    "Question 4": {"question":"10 / 2", "answer":"a", "a":5, "b":10, "c":-5, "d":8},
+    "Question 5": {"question":"9 / 3", "answer":"b", "a":5, "b":3, "c":6, "d":-3},
+    "Question 6": {"question":"7 + 6", "answer":"b", "a":7, "b":13, "c":10, "d":12},
+    "Question 7": {"question":"3 - 8", "answer":"d", "a":5, "b":-4, "c":-6, "d":-5},
+    "Question 8": {"question":"12 / -2", "answer":"a", "a":-6, "b":3, "c":6, "d":-8},
+    "Question 9": {"question":"-1 + 7", "answer":"c", "a":5, "b":7, "c":6, "d":9},
+    "Question 10": {"question":"-2 * -7", "answer":"d", "a":9, "b":-9, "c":-14, "d":14}
+}
