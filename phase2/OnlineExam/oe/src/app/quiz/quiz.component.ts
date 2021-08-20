@@ -25,13 +25,13 @@ export class QuizComponent implements OnInit {
 
   postExam(data:string)
   {
-    console.log("exam");
+    //console.log("exam");
     
     let exam = JSON.parse(this.data);
 
-    console.log(exam);
+    //console.log(exam);
 
-    console.log("end of exam");
+    //console.log("end of exam");
 
     let html:string = "<div id='exam'>";
 
@@ -46,7 +46,7 @@ export class QuizComponent implements OnInit {
         html += `<td><input type="radio" name="${i}" value="${k}">${exam[i][k]}</td>`;
       }
       html += `</tr></table></form><br/>`;
-      console.log(`${i}: ${exam[i]["question"]}`);
+      //console.log(`${i}: ${exam[i]["question"]}`);
     }
 
     html += '<a href="#" id="gradebutton">Grade</a></div>';
@@ -64,7 +64,7 @@ export class QuizComponent implements OnInit {
   {
     let response = <HTMLFormElement>document.getElementById("Question 1");
     
-    console.log(response.val);
+    //console.log(response.val);
 
     let qs = sessionStorage.getItem("questions");
     this.questionSet = qs != null? JSON.parse(qs) : [];
@@ -72,14 +72,14 @@ export class QuizComponent implements OnInit {
     let answers:Answers = {};
 
     for(var i in this.questionSet){
-      console.log(this.questionSet[i]);
+      //console.log(this.questionSet[i]);
       let check = document.getElementsByName(this.questionSet[i]);
-      console.log(document.getElementsByName(this.questionSet[i]));
+      //console.log(document.getElementsByName(this.questionSet[i]));
       answers[this.questionSet[i]] = "";
       for(var j in check){
         let el = (<HTMLInputElement>check[j]);
         if(el.checked == true){
-          console.log(j + " is checked");
+          //console.log(j + " is checked");
           answers[this.questionSet[i]] = el.value;
         }
       }
