@@ -25,13 +25,7 @@ export class QuizComponent implements OnInit {
 
   postExam(data:string)
   {
-    //console.log("exam");
-    
     let exam = JSON.parse(this.data);
-
-    //console.log(exam);
-
-    //console.log("end of exam");
 
     let html:string = "<div id='exam'>";
 
