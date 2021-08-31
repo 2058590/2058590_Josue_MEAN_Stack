@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Planner</title>
+</head>
+<body>
+    <h2>Task Planner</h2>
+    <h3>Add Task</h3>
+    <form action="addtask" method="POST">
+        <label>Employee ID</label>
+        <input type="text" name="empid" required/><br/>
+        <label>Task ID</label>
+        <input type="text" name="taskid" required/><br/>
+        <label>Task</label>
+        <input type="text" name="task" required/><br/>
+        <label>Deadline</label>
+        <input type="date" name="date" required/><br/>
+        <input type="submit" value="Add Task"/>
+    </form>
+    <br/>
+
+    <h3>Delete Tasks</h3>
+    <form action="deletetask" method="POST">
+        <label>Task ID</label>
+        <input type="text" name="taskid" required/><br/>
+        <input type="submit" value="Delete Task"/>
+    </form>
+
+    <br/>
+    <h3>Task List</h3>
+    <table id="tasks">
+        {{TASKS}}
+    </table>
+</body>
+</html>
