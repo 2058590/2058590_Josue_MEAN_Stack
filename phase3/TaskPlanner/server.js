@@ -1,11 +1,11 @@
 let fs = require("fs");
 let express = require("express");
-//let bodyParser = require("body-parser");
-//const { json } = require("body-parser");
+let bodyParser = require("body-parser");
+const { json } = require("body-parser");
 
 let app = express();
 
-//app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.urlencoded({extended:true}));
 
 let html = `<!DOCTYPE html>
 <html lang="en">
@@ -18,6 +18,7 @@ let html = `<!DOCTYPE html>
 <body>
     <h2>Task Planner</h2>
     <h3>Add Task</h3>
+    <a href="index">Refresh</a> 
     <form action="addtask" method="POST">
         <label>Employee ID</label>
         <input type="text" name="empid" required/><br/>
@@ -49,7 +50,6 @@ let html = `<!DOCTYPE html>
 let taskData = null;
 
 app.get("/index", (request, response) => {
-    
     writeTasks();
     response.sendFile(__dirname+"\\userhtml.html");
 });
@@ -64,13 +64,14 @@ app.post("/addtask", (request, response) => {
 });
 
 app.post("/deletetask", (request, response) => {
-    taskid = request.body["taskid"];
+    let taskid = request.body["taskid"];
+    console.log(request.body.toString());
     if(taskid != undefined){
         deleteTask(taskid);
     }
     writeTasks();
     response.sendFile(__dirname+"\\userhtml.html");
-    
+
 });
 
 
@@ -81,26 +82,27 @@ function addTask(taskData){
         
         if(data != undefined){
             console.log("data file exists");
-            console.log(JSON.parse(data));
-            json = JSON.parse(data);
+            //console.log(JSON.parse(data));
+            json = JSON.parse(data.toString());
+
+            //add data
+            if(taskData != null){
+                taskid = taskData["taskid"];
+                if(!(taskid in json)){
+                    json[taskid] = taskData;
+                } else {
+                    console.log("Task ID already exists.");
+                }
+            }
+
+        fs.writeFile("data.json", data=JSON.stringify(json), (err) => console.log(err));
+
         } else {
             console.log("data file does not exist");
         }
 
         console.log(json);
 
-        //add data
-        if(taskData != null){
-            taskid = taskData["taskid"];
-            if(!(taskid in json)){
-                json[taskid] = taskData;
-            } else {
-                console.log("Task ID already exists.");
-            }
-            
-        }
-
-        fs.writeFile("data.json", data=JSON.stringify(json), (err) => console.log(err));
     });
 }
 
@@ -111,8 +113,8 @@ function deleteTask(taskid){
         
         if(data != undefined){
             console.log("data file exists");
-            console.log(JSON.parse(data));
-            json = JSON.parse(data);
+            //console.log(JSON.parse(data));
+            json = JSON.parse(data.toString());
         } else {
             console.log("data file does not exist");
         }
@@ -128,26 +130,6 @@ function deleteTask(taskid){
     });
 }
 
-function readData(){
-    
-    let json = {};
-
-    fs.readFile("data.json", (err, data) => {
-    
-        if(data != undefined){
-            console.log("data file exists");
-            console.log(JSON.parse(data));
-            json = JSON.parse(data);
-        } else {
-            console.log("data file does not exist");
-        }
-
-        console.log(json);
-
-        return json;
-    });
-
-}
 
 function writeTasks(){
     
@@ -159,41 +141,43 @@ function writeTasks(){
             console.log("index file exists");
             html = data.toString();
             console.log(html);
+
+            fs.readFile("data.json", (err, json) => {
+                let tasks = {};
+    
+                if(json != undefined){
+                    console.log("data file exists");
+                    tasks = JSON.parse(json.toString());
+                } else {
+                    console.log("data file does not exist");
+                }
+        
+                console.log("tasks to add "+tasks.toString());
+    
+                for(var i in tasks)
+                {
+                task = tasks[i];
+                taskid = task["taskid"];
+                empid = task["empid"];
+                t = task["task"];
+                date = task["date"];
+                taskHTML += `<tr><td>${empid}</td><td>${taskid}</td><td>${t}</td><td>${date}</td></tr>`;
+                }
+    
+                console.log(taskHTML);
+    
+                res = html.replace("{{TASKS}}",taskHTML);
+
+                console.log("\n\nresponse HTML\n\n"+res);
+    
+                fs.writeFile("userhtml.html", data=res, (err) => console.log(err));
+                
+        });
             
         } else {
             console.log("data file does not exist");
-            return;
         }
 
-        fs.readFile("data.json", (err, data) => {
-            let tasks = {};
-
-            if(data != undefined){
-                console.log("data file exists");
-                console.log(JSON.parse(data));
-                tasks = JSON.parse(data);
-            } else {
-                console.log("data file does not exist");
-            }
-    
-            console.log("tasks to add "+tasks.toString());
-
-            for(var i in tasks)
-            {
-            task = tasks[i];
-            taskid = task["taskid"];
-            empid = task["empid"];
-            t = task["task"];
-            date = task["date"];
-            taskHTML += `<tr><td>${empid}</td><td>${taskid}</td><td>${t}</td><td>${date}</td></tr>`;
-            }
-
-            console.log(taskHTML);
-
-            res = html.replace("{{TASKS}}",taskHTML);
-
-            fs.writeFile("userhtml.html", data=res, (err) => console.log(err));
-        });
     });
 
 }
