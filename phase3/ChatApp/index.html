@@ -17,7 +17,17 @@
             v.innerHTML = t;
         })
         
-
+        function sendChat(){
+            let v = document.getElementById("chatI");
+            let u = document.getElementById("uname");
+            let c = document.getElementById("chatMs");
+            if(v != null){
+                let k =  u.value + ": "+ v.value;
+                socket.emit("client chat", k);
+                c.innerHTML += `<p>${k}\n</p>`;
+                v.value = "";
+            }
+        }
     </script>
 </head>
 <body>
@@ -27,6 +37,6 @@
         <input name="name" id="uname" placeholder="Username">
         <input name="chat" id="chatI" placeholder="Enter chat message">
     </form>
-    <a href="#" onclick="">Send</a>
+    <a href="#" onclick="sendChat()">Send</a>
 </body>
 </html>
