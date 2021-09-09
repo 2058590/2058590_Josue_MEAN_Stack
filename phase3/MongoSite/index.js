@@ -31,9 +31,10 @@ app.get("/delete.html", (request, response) => {
     response.sendFile(__dirname+"\\delete.html");
 });
 
-app.get("/fetch.html", (request, response) => {
+app.get("/action_fetch_update", (request, response) => {
    
-    response.sendFile(__dirname+"\\fetch.html");
+    fetchDocuments();
+    response.sendFile(__dirname+"\\fetched.html");
 });
 
 app.post("/action_add", (request, response) => {
@@ -63,14 +64,12 @@ app.post("/action_delete", (request, response) => {
     response.sendFile(__dirname+"\\delete.html");    
 });
 
-app.post("/action_fetch", (request, response) => {
-    taskData = 'fetching courses';//= request.body;
+app.get("/action_fetch", (request, response) => {
     
-    //taskData["_id"] = taskData.couid;
-    console.log(taskData);
-    let data = [];
-    data = fetchDocuments(data);
-    response.sendFile(__dirname+"\\fetch.html");    
+    fetchDocuments();
+
+    response.sendFile(__dirname+"\\fetch.html");
+    
 });
 
 function addDocument(data, dbname="TestDB", collection="TestCol")
@@ -148,7 +147,7 @@ function deleteDocument(data, dbname="TestDB", collection="TestCol")
     });
 }
 
-function fetchDocuments(data=[], dbname="TestDB", collection="TestCol")
+async function fetchDocuments( dbname="TestDB", collection="TestCol")
 {
 
     mongoClient.connect(url, (err,client) => {
@@ -158,17 +157,60 @@ function fetchDocuments(data=[], dbname="TestDB", collection="TestCol")
             
             let cursor = db.collection(collection).find();
 
-            cursor.forEach(doc=> {
-                data.push(doc);
-                console.log(doc);
+            var i = 0;
+            cursor.forEach(doc => { 
+                //table += doc.toString();
+                console.log(JSON.stringify(doc));
+                row = JSON.stringify(doc) + ",";
+                console.log(""+i+": ");
+                //console.log(doc);
+                //table += `<tr><td>${doc.couid}</td><td>${doc.counm}</td><td>${doc.descr}</td><td>${doc.amount}</td></tr>`;
                 client.close();
-            })
+                i++;
+                fs.writeFile("fetched.json",row,{flag:"a+"},(err)=> {
+                    if(!err){
+                        console.log("fetched.json appended")
+                    }
+                });
+            }).catch(error => { console.log(error)});
+
+            fs.readFile("fetch.html",(error,data)=> {
+                if(!error){
+        
+                    let html = data.toString();
+                    
+                    fs.readFile("fetched.json",(error,json)=> {
+                        if(!error){
+                            let data = JSON.parse("["+
+                                json.toString().substring(0, json.length - 1) +
+                                "]");
+
+                            let table = "<table><th>ID</th><th>Name</th><th>Description</th><th>Amount</th>";
+                            
+                            for(var i in data) {
+                                var doc = data[i];
+                                table += `<tr><td>${doc.couid}</td><td>${doc.counm}</td><td>${doc.descr}</td><td>${doc.amount}</td></tr>`;
+                            }
+                            table += "</table>"
+                            html = html.replace("{{COURSES}}", table);
+                            console.log(html);
+                            
+                            fs.writeFile("fetched.html",html,{flag:"w"},(err)=> {
+                                if(!err){
+                                    console.log("fetched.html written")
+                                    fs.unlinkSync("fetched.json");
+                                }
+                            });
+                        }
+                    });
+
+                }
+            });
             
-        }else {
+        } else {
             console.log(err);
         }
 
-        return data;
     });
 }
 
