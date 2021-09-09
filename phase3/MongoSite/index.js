@@ -19,12 +19,32 @@ app.get("/index", (request, response) => {
     response.sendFile(__dirname+"\\index.html");
 });
 
+app.get("/add.html", (request, response) => {
+   
+    response.sendFile(__dirname+"\\add.html");
+});
+
+app.get("/update.html", (request, response) => {
+   
+    response.sendFile(__dirname+"\\update.html");
+});
+
+app.get("/delete.html", (request, response) => {
+   
+    response.sendFile(__dirname+"\\delete.html");
+});
+
+app.get("/fetch.html", (request, response) => {
+   
+    response.sendFile(__dirname+"\\fetch.html");
+});
+
 app.post("/action_add", (request, response) => {
     taskData = request.body;
     console.log(taskData);
     //addTask(taskData);
     //writeTasks();
-
+    addDocument([taskData]);
     response.sendFile(__dirname+"\\add.html");    
 });
 
@@ -46,7 +66,7 @@ app.post("/action_fetch", (request, response) => {
     response.sendFile(__dirname+"\\fetch.html");    
 });
 
-function addDocument(dbname, collection, data)
+function addDocument(data, dbname="TestDB", collection="TestCol")
 {
     mongoClient.connect(url, (err,client) => {
         if(!err){
