@@ -9,10 +9,7 @@ let mongoClient = require("mongodb").MongoClient;
  
 let url ="mongodb://localhost:27017";
 
-
 app.use(bodyParser.urlencoded({extended:true}));
-
-
 
 app.get("/index", (request, response) => {
    
@@ -81,9 +78,9 @@ function addDocument(data, dbname="TestDB", collection="TestCol")
         if(!err){
             console.log("Connected")
             let db = client.db(dbname);
-           
-                db.collection(collection).insertOne(data, 
-                (err,result)=> {
+
+            db.collection(collection).insertOne(data, 
+                (err,result) => {
                     if(!err){
                       console.log("Record inserted successfully")
                        console.log(result);
@@ -91,7 +88,8 @@ function addDocument(data, dbname="TestDB", collection="TestCol")
                         console.log(err);
                     }
                     client.close();
-                });
+                }
+            );
         }
     });
 }
@@ -105,7 +103,7 @@ function updateDocument(data, dbname="TestDB", collection="TestCol")
            
             db.collection(collection).updateOne({_id:data._id}, 
                 {$set:data},
-                (err,result)=> {
+                (err,result) => {
                     if(!err){
                         if(result.modifiedCount>0){
                             console.log("Record updated successfully")
@@ -118,6 +116,32 @@ function updateDocument(data, dbname="TestDB", collection="TestCol")
                 }
 
                 client.close();
+            });
+        }
+    });
+}
+
+function deleteDocument(data, dbname="TestDB", collection="TestCol")
+{
+    mongoClient.connect(url, (err,client) => {
+        if(!err){
+            console.log("Connected")
+            let db = client.db(dbname);
+           
+            db.collection(collection).deleteOne({_id:data._id}, 
+                (err,result) => {
+                    if(!err){
+                        if(result.deletedCount>0){
+                            console.log("Record deleted successfully")
+                        }else {
+                            console.log("Record not present")
+                        }
+                       
+                    }else {
+                        console.log(err);
+                    }
+
+                    client.close();
             });
         }
     });
