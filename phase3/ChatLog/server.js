@@ -24,6 +24,7 @@ io.on('connection', (socket)=>{
         try{
             let data = JSON.parse(msg);
             console.log(data);
+            addDocument(data);
         }catch(error){
             console.log(error);
         }
