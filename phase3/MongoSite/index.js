@@ -41,28 +41,37 @@ app.get("/fetch.html", (request, response) => {
 
 app.post("/action_add", (request, response) => {
     taskData = request.body;
+    
+    taskData["_id"] = taskData.couid;
     console.log(taskData);
-    //addTask(taskData);
-    //writeTasks();
-    addDocument([taskData]);
+    addDocument(taskData);
     response.sendFile(__dirname+"\\add.html");    
 });
 
 app.post("/action_update", (request, response) => {
     taskData = request.body;
+
+    taskData["_id"] = taskData.couid;
     console.log(taskData);
+    updateDocument(taskData);
     response.sendFile(__dirname+"\\update.html");    
 });
 
 app.post("/action_delete", (request, response) => {
     taskData = request.body;
+    
+    taskData["_id"] = taskData.couid;
     console.log(taskData);
+    deleteDocument(taskData);
     response.sendFile(__dirname+"\\delete.html");    
 });
 
 app.post("/action_fetch", (request, response) => {
-    taskData = request.body;
+    taskData = 'fetching courses';//= request.body;
+    
+    //taskData["_id"] = taskData.couid;
     console.log(taskData);
+    fetchDocuments();
     response.sendFile(__dirname+"\\fetch.html");    
 });
 
@@ -73,8 +82,7 @@ function addDocument(data, dbname="TestDB", collection="TestCol")
             console.log("Connected")
             let db = client.db(dbname);
            
-           
-                db.collection(collection).insertMany(data, 
+                db.collection(collection).insertOne(data, 
                 (err,result)=> {
                     if(!err){
                       console.log("Record inserted successfully")
@@ -84,6 +92,33 @@ function addDocument(data, dbname="TestDB", collection="TestCol")
                     }
                     client.close();
                 });
+        }
+    });
+}
+
+function updateDocument(data, dbname="TestDB", collection="TestCol")
+{
+    mongoClient.connect(url, (err,client) => {
+        if(!err){
+            console.log("Connected")
+            let db = client.db(dbname);
+           
+            db.collection(collection).updateOne({_id:data._id}, 
+                {$set:data},
+                (err,result)=> {
+                    if(!err){
+                        if(result.modifiedCount>0){
+                            console.log("Record updated successfully")
+                        }else {
+                            console.log("Record not present")
+                        }
+                       
+                }else {
+                    console.log(err);
+                }
+
+                client.close();
+            });
         }
     });
 }
