@@ -23,7 +23,8 @@
             let c = document.getElementById("chatMs");
             if(v != null){
                 let k =  u.value + ": "+ v.value;
-                socket.emit("client chat", k);
+                let data = `{"name":"${u.value}","message":"${v.value}"}`;
+                socket.emit("client chat", data);
                 c.innerHTML += `<p>${k}\n</p>`;
                 v.value = "";
             }
