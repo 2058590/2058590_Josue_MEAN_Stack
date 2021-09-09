@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatLog</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javaScript">
+        var socket = io();
+        socket.emit("client chat", "Hello Server I am Web Socket Client");
+        socket.on("server chat", (msg)=> {
+            console.log(msg);
+            let v = document.getElementById("chatMs");
+            let t = v != null && v != undefined ? v.innerHTML : "<h3>Chat board</h3>";
+            t += `<p>Server: ${msg}\n</p>`;
+            v.innerHTML = t;
+        })
+        
+        function sendChat(){
+            let v = document.getElementById("chatI");
+            let u = document.getElementById("uname");
+            let c = document.getElementById("chatMs");
+            if(v != null){
+                let k =  u.value + ": "+ v.value;
+                socket.emit("client chat", k);
+                c.innerHTML += `<p>${k}\n</p>`;
+                v.value = "";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Chat Log</h2>
+    <div id="chatMs"><h3>Logs</h3></div>
+    <form>
+        <input name="name" id="uname" placeholder="Username">
+        <input name="chat" id="chatI" placeholder="Enter chat message">
+    </form>
+    <a href="#" onclick="sendChat()">Send</a>
+</body>
+</html>
