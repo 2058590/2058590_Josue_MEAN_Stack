@@ -68,7 +68,8 @@ app.post("/action_fetch", (request, response) => {
     
     //taskData["_id"] = taskData.couid;
     console.log(taskData);
-    fetchDocuments();
+    let data = [];
+    data = fetchDocuments(data);
     response.sendFile(__dirname+"\\fetch.html");    
 });
 
@@ -144,6 +145,30 @@ function deleteDocument(data, dbname="TestDB", collection="TestCol")
                     client.close();
             });
         }
+    });
+}
+
+function fetchDocuments(data=[], dbname="TestDB", collection="TestCol")
+{
+
+    mongoClient.connect(url, (err,client) => {
+        if(!err){
+            console.log("Connected")
+            let db = client.db(dbname);
+            
+            let cursor = db.collection(collection).find();
+
+            cursor.forEach(doc=> {
+                data.push(doc);
+                console.log(doc);
+                client.close();
+            })
+            
+        }else {
+            console.log(err);
+        }
+
+        return data;
     });
 }
 
