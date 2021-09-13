@@ -5,6 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Platform</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javaScript">
+        var socket = io();
+        socket.emit("client", "check_fetch");
+        socket.on("server", (msg)=> {
+            
+            if(msg === "good"){
+                console.log(msg);
+            } else {
+                //console.log(msg);
+                let data = JSON.parse(msg);
+                let table = "<table><th>ID</th><th>Name</th><th>Description</th><th>Amount</th>";
+                            
+                for(var i in data) {
+                    var doc = data[i];
+                    table += `<tr><td>${doc.couid}</td><td>${doc.counm}</td><td>${doc.descr}</td><td>${doc.amount}</td></tr>`;
+                }
+                table += "</table>";
+                let t = document.getElementById("courses");
+                t.innerHTML = table;
+            }
+        });
+        
+    </script>
 </head>
 <body>
     <h2>Course Platform</h2>
@@ -14,9 +38,9 @@
 
     <br/>
     <h3>Courses</h3>
-    <table id="courses">
+    <div id="courses">
         {{COURSES}}
-    </table>
+    </div>
     <a href="action_fetch_update">Fetch</a>
 </body>
 </html>

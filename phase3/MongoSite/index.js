@@ -1,13 +1,55 @@
 let fs = require("fs");
 let express = require("express");
 let bodyParser = require("body-parser");
+
 const { json } = require("body-parser");
 
 let app = express();
 
+const http = require("http");
+const server = http.createServer(app);
+const {Server} = require("socket.io");
+const io = new Server(server);
+
 let mongoClient = require("mongodb").MongoClient;
  
 let url ="mongodb://localhost:27017";
+
+io.on('connection', (socket)=>{
+    console.log("user connected");
+    socket.on("client", (msg)=>{
+        console.log("Client: "+msg);
+        try{
+            fs.exists("fetched.json", (ex) => {
+                if(ex){
+                    fs.readFile("fetched.json",(error,json)=> {
+                        if(!error){
+                            let data = JSON.parse("["+
+                                json.toString().substring(0, json.length - 1) +
+                                "]");
+
+                            /*let table = "<table><th>ID</th><th>Name</th><th>Description</th><th>Amount</th>";
+                            
+                            for(var i in data) {
+                                var doc = data[i];
+                                table += `<tr><td>${doc.couid}</td><td>${doc.counm}</td><td>${doc.descr}</td><td>${doc.amount}</td></tr>`;
+                            }
+                            table += "</table>"*/
+                                                        
+                            socket.emit("server", JSON.stringify(data));
+                            
+                            fs.unlinkSync("fetched.json");
+                        }
+                    });
+                } else {
+                    socket.emit("server", "good");
+                }
+            })
+        }catch(error){
+            console.log(error);
+        }
+    });
+});
 
 app.use(bodyParser.urlencoded({extended:true}));
 
@@ -35,6 +77,15 @@ app.get("/action_fetch_update", (request, response) => {
    
     fetchDocuments();
     response.sendFile(__dirname+"\\fetched.html");
+});
+
+app.get("/action_fetch_refresh", (request, response) => {
+    response.sendFile(__dirname+"\\fetched.html");
+    fs.unlinkSync("fetched.html");
+});
+
+app.get("/fetched.json", (request, response) => {
+    response.sendFile(__dirname+"\\fetched.json");
 });
 
 app.post("/action_add", (request, response) => {
@@ -174,7 +225,7 @@ async function fetchDocuments( dbname="TestDB", collection="TestCol")
                 });
             }).catch(error => { console.log(error)});
 
-            fs.readFile("fetch.html",(error,data)=> {
+            /*fs.readFile("fetch.html",(error,data)=> {
                 if(!error){
         
                     let html = data.toString();
@@ -205,7 +256,7 @@ async function fetchDocuments( dbname="TestDB", collection="TestCol")
                     });
 
                 }
-            });
+            });*/
             
         } else {
             console.log(err);
@@ -214,4 +265,5 @@ async function fetchDocuments( dbname="TestDB", collection="TestCol")
     });
 }
 
-app.listen(9090,()=>console.log("Server running on port number 9090"));
+//app.listen(9090,()=>console.log("Server running on port number 9090"));
+server.listen(9090,()=>console.log("Server running on port number 9090"));
