@@ -5,15 +5,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Platform</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javaScript">
+        var socket = io();
+        
+        function checkId(){
+            let t = document.getElementsByName("couid")[0];
+            
+            if(t.value != null && t.value != "")
+                socket.emit("client add", "check_id:"+t.value);
+        }
+
+        socket.on("add server", (msg) => {
+            try {
+                let bad = document.getElementById("bad");
+                if(msg === "good"){
+                    
+                    bad.hidden = true;
+                } else if(msg === "bad") {
+                    bad.hidden = false;
+                } 
+            }catch(error) {
+                console.log(error);
+            }
+        });
+        
+    </script>
 </head>
 <body>
     <h2>Course Platform</h2>
 
+    <div id="bad" hidden>ID is not unique.</div>
     <h3>Add Course</h3>
     <a href="index">Back</a> 
     <form action="action_add" method="POST">
         <label>Course ID</label>
-        <input type="text" name="couid" required/><br/>
+        <input type="text" name="couid" onkeyup="checkId()" required/><br/>
         <label>Course Name</label>
         <input type="text" name="counm" required/><br/>
         <label>Description</label>

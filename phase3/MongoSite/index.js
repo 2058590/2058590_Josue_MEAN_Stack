@@ -17,7 +17,7 @@ let url ="mongodb://localhost:27017";
 
 io.on('connection', (socket)=>{
     console.log("user connected");
-    socket.on("client", (msg)=>{
+    socket.on("client fetch", (msg)=>{
         console.log("Client: "+msg);
         try{
             fs.exists("fetched.json", (ex) => {
@@ -27,28 +27,60 @@ io.on('connection', (socket)=>{
                             let data = JSON.parse("["+
                                 json.toString().substring(0, json.length - 1) +
                                 "]");
-
-                            /*let table = "<table><th>ID</th><th>Name</th><th>Description</th><th>Amount</th>";
-                            
-                            for(var i in data) {
-                                var doc = data[i];
-                                table += `<tr><td>${doc.couid}</td><td>${doc.counm}</td><td>${doc.descr}</td><td>${doc.amount}</td></tr>`;
-                            }
-                            table += "</table>"*/
                                                         
-                            socket.emit("server", JSON.stringify(data));
+                            socket.emit("fetch server", JSON.stringify(data));
                             
                             fs.unlinkSync("fetched.json");
                         }
                     });
                 } else {
-                    socket.emit("server", "good");
+                    socket.emit("fetch server", "good");
                 }
             })
         }catch(error){
             console.log(error);
         }
     });
+
+    socket.on("client add", (msg)=>{
+        console.log("Client: "+msg);
+        try{
+            if(msg.startsWith("check_id:")) {
+                let check_id = msg.substring(9);
+                let ex = false;
+
+                mongoClient.connect(url, (err,client) => {
+                    if(!err){
+                        console.log("Connected")
+                        let db = client.db("TestDB");
+            
+                        db.collection("TestCol").findOne({_id : check_id}, 
+                            (err,result) => {
+                                console.log("msg: "+msg);
+                                console.log(check_id);
+                                console.log(result);
+                                if(!err){
+                                    if(result != undefined && result != null){
+                                        console.log("Record exists")
+                                        console.log(result);     
+                                        socket.emit("add server", "bad");
+                                    } else {
+                                        socket.emit("add server", "good");
+                                    }
+                                }else {
+                                    console.log(err);
+                                }
+                                client.close();
+                            }
+                        );
+                    }
+                });
+            }
+        }catch(error){
+            console.log(error);
+        }
+    });
+    
 });
 
 app.use(bodyParser.urlencoded({extended:true}));
@@ -145,6 +177,7 @@ function addDocument(data, dbname="TestDB", collection="TestCol")
     });
 }
 
+
 function updateDocument(data, dbname="TestDB", collection="TestCol")
 {
     mongoClient.connect(url, (err,client) => {
@@ -214,9 +247,7 @@ async function fetchDocuments( dbname="TestDB", collection="TestCol")
                 console.log(JSON.stringify(doc));
                 row = JSON.stringify(doc) + ",";
                 console.log(""+i+": ");
-                //console.log(doc);
-                //table += `<tr><td>${doc.couid}</td><td>${doc.counm}</td><td>${doc.descr}</td><td>${doc.amount}</td></tr>`;
-                client.close();
+                 client.close();
                 i++;
                 fs.writeFile("fetched.json",row,{flag:"a+"},(err)=> {
                     if(!err){
@@ -225,38 +256,6 @@ async function fetchDocuments( dbname="TestDB", collection="TestCol")
                 });
             }).catch(error => { console.log(error)});
 
-            /*fs.readFile("fetch.html",(error,data)=> {
-                if(!error){
-        
-                    let html = data.toString();
-                    
-                    fs.readFile("fetched.json",(error,json)=> {
-                        if(!error){
-                            let data = JSON.parse("["+
-                                json.toString().substring(0, json.length - 1) +
-                                "]");
-
-                            let table = "<table><th>ID</th><th>Name</th><th>Description</th><th>Amount</th>";
-                            
-                            for(var i in data) {
-                                var doc = data[i];
-                                table += `<tr><td>${doc.couid}</td><td>${doc.counm}</td><td>${doc.descr}</td><td>${doc.amount}</td></tr>`;
-                            }
-                            table += "</table>"
-                            html = html.replace("{{COURSES}}", table);
-                            console.log(html);
-                            
-                            fs.writeFile("fetched.html",html,{flag:"w"},(err)=> {
-                                if(!err){
-                                    console.log("fetched.html written")
-                                    fs.unlinkSync("fetched.json");
-                                }
-                            });
-                        }
-                    });
-
-                }
-            });*/
             
         } else {
             console.log(err);
@@ -265,5 +264,4 @@ async function fetchDocuments( dbname="TestDB", collection="TestCol")
     });
 }
 
-//app.listen(9090,()=>console.log("Server running on port number 9090"));
 server.listen(9090,()=>console.log("Server running on port number 9090"));

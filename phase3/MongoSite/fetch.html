@@ -8,8 +8,8 @@
     <script src="/socket.io/socket.io.js"></script>
     <script type="text/javaScript">
         var socket = io();
-        socket.emit("client", "check_fetch");
-        socket.on("server", (msg)=> {
+        socket.emit("client fetch", "check_fetch");
+        socket.on("fetch server", (msg)=> {
             
             if(msg === "good"){
                 console.log(msg);
@@ -41,6 +41,6 @@
     <div id="courses">
         {{COURSES}}
     </div>
-    <a href="action_fetch_update">Fetch</a>
+    
 </body>
 </html>
