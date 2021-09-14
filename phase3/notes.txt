@@ -1,0 +1,21 @@
+Site Database:
+Tables
+Admin: userid, password
+
+Employees: first_name, last_name, email-id, emp_id, password 
+
+Products: product_id, name, price, discounts, quatities_in_stock
+
+Requests: product_id, name
+
+users: first_name, last_name, emai-id, user_id, pasword, dob, phone number, address, account no., funds, account_status
+
+carts: user_id, products,
+
+orders: order_id, status, user_id 
+
+tickets: ticket_id, user_id, issue, emp_id, status 
+
+First of all:
+- Lets create MongoDB cloud database and add necessary tables and add mandatory values like login credentials for each one.
+- Create a git hub repo and push one empty angular project with welcome page and 3 routes admin, employee and user.
